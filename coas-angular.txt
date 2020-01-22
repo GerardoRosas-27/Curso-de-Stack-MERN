@@ -1,0 +1,68 @@
+comando para camviar el puerto de angular: 
+
+ng serve --port 4401   
+
+link directo a la interfaz del proyecto:
+
+http://localhost:4200/detalle/ERAZOC910670/0003426768
+
+
+
+-------renombrar ramas GIT ------
+$ git branch --set-upstream-to=origin/feature-caratulas arquitectura
+
+
+
+---------comandos de GIT-----------
+
+------listar las ramas-------
+git branch
+git branch -a
+------selecionar rama---------
+git checkout <nombre_rama>
+-------listar el estdo-----
+git status
+-------agregar los ficheros -------
+git add <ficheros>
+-------agregar el commit-------
+git commit -m "Initial commit"
+git status
+--------subir los cambios--------
+git push -u origin <rama>
+
+
+
+
+
+Command line instructions
+You can also upload existing files from your computer using the instructions below.
+
+
+Git global setup
+git config --global user.name "Erick Saul Gonzalez Gonzalez"
+git config --global user.email "erick.gonzalez@gnp.com.mx"
+
+Create a new repository
+git clone http://git.gnp.mx/GCP/gnp-plus/gnp-plus-portal/pruebas-gtec.git
+cd pruebas-gtec
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Push an existing folder
+cd existing_folder
+git init
+git remote add origin http://git.gnp.mx/GCP/gnp-plus/gnp-plus-portal/pruebas-gtec.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Push an existing Git repository
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin http://git.gnp.mx/GCP/gnp-plus/gnp-plus-portal/pruebas-gtec.git
+git remote add origin http://git.gnp.mx/GCP/gnp-plus/gnp-plus-front/PLUS-ANGULAR-FRONT.git
+
+git push -u origin --all
+git push -u origin --tags
