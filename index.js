@@ -2,13 +2,14 @@
 $(document).ready(function () {
     getListarUsuarios();
 });
+//funcion para listar los usuarios al consultar la API
 async function getListarUsuarios() {
     const url = "http://localhost:3000/api/users";
     var response = await ajaxDataGet(url);
     console.log("response:", response);
     crearFilas(response.data);
 }
-
+//funcion para crear filas de la tabla con los datos de todos los usuarioa
 function crearFilas(data) {
     console.log('entro for: ', data);
     var html = "";
@@ -18,8 +19,7 @@ function crearFilas(data) {
     console.log(html)
     $('#contentTR').html(html);
 }
-
-
+//funcion para guardar los datos del formulario, de un nuevo usuario
 async function onGuardar() {
     const url = "http://localhost:3000/api/users";
     console.log("datos formularios");
@@ -35,9 +35,10 @@ async function onGuardar() {
     var response = await ajaxData(url, data, "POST");
     console.log("response:", response);
     alert(response.mensaje);
+    limpiar();
     getListarUsuarios();
 }
-
+// funcion para eliminar el usuario selecionado
 async function onEliminar(element) {
     var id = $(element).data('id');
     console.log("id: ", id);
@@ -46,6 +47,7 @@ async function onEliminar(element) {
     alert(response.mensaje);
     getListarUsuarios();
 }
+//funcion para cargar los datos del usario selecionado
 async function onEditar(element) {
     var id = $(element).data('id');
     var url = "http://localhost:3000/api/users/" + id;
@@ -58,7 +60,7 @@ async function onEditar(element) {
     $('#matricula').val(response.data.matricula);
     $('#contenActualizar').html('<button data-id="' + id + '" onclick="onActualizar(this)" class="btn btn-success">Actualizar</button>');
 }
-
+//funcion para mandar actualizar los datos
 async function onActualizar(element) {
     var id = $(element).data('id');
     var url = "http://localhost:3000/api/users/" + id;
@@ -75,10 +77,9 @@ async function onActualizar(element) {
     var response = await ajaxData(url, data, "PUT");
     console.log("response:", response);
     alert(response.mensaje);
-    limpiar();
     getListarUsuarios();
 }
-
+// funcion para limpiar el formulario
 function limpiar() {
     $('#contenActualizar').html('');
     $('#nombre').val('');
@@ -88,7 +89,7 @@ function limpiar() {
     $('#correo').val('');
     $('#matricula').val('');
 }
-
+// funcion ajax para post y put
 async function ajaxData(url, data, tipo) {
     try {
         const response = await fetch(url, {
@@ -98,6 +99,7 @@ async function ajaxData(url, data, tipo) {
         });
         const respuesta = JSON.parse(await response.text());
         //const respuesta = await response.text();
+        
         return respuesta;
 
     } catch (err) {
@@ -105,6 +107,7 @@ async function ajaxData(url, data, tipo) {
         alert(err);
     }
 }
+//funcion ajax para get
 async function ajaxDataGet(url) {
     try {
         const response = await fetch(url, {
@@ -120,6 +123,7 @@ async function ajaxDataGet(url) {
         alert(err);
     }
 }
+//funcion ajax para delete
 async function ajaxDataDelet(url) {
     try {
         const response = await fetch(url, {
