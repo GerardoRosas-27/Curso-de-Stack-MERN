@@ -13,7 +13,7 @@ function crearFilas(data){
     console.log('entro for: ', data);
     var html = "";
     data.forEach(element => {
-       html = html + '<tr>' + '<td>'+ element.nombre + '</td> <td>'+ element.apellidoPaterno + '</td><td>'+ element.apellidoMaterno + '</td><td>'+ element.telefono + '</td><td>'+ element.correo + '</td><td>'+ element.matricula + '</td><td> <button onclick="onEliminar()" class="btn btn-success">Eliminar</button> </td></tr>';
+       html = html + '<tr>' + '<td>'+ element.nombre + '</td> <td>'+ element.apellidoPaterno + '</td><td>'+ element.apellidoMaterno + '</td><td>'+ element.telefono + '</td><td>'+ element.correo + '</td><td>'+ element.matricula + '</td><td> <button onclick="onEliminar(this)" data-id="'+ element._id +'" class="btn btn-success">Eliminar</button> </td></tr>';
     });
     console.log(html)
     $('#contentTR').html(html);
@@ -38,11 +38,13 @@ async function onGuardar() {
     getListarUsuarios();  
 }
 
-async function onEliminar(){
-    console.log("id: ");
-    var url= "http://localhost:3000/api/users/6079f40bf345662cf4e5a948";
+async function onEliminar(element){
+    var id = $(element).data('id');
+    console.log("id: ", id);
+    var url= "http://localhost:3000/api/users/" + id;
     var response = await ajaxDataDelet(url);
     alert(response.mensaje);
+    getListarUsuarios(); 
 }
 
 async function ajaxData(url, data, tipo) {
