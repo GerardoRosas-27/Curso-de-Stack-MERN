@@ -45,7 +45,7 @@ usersControl.deleteUser = (req, res) =>{
         console.log('result bd: ', user);
         if (err) {
             console.log('error:', err);
-            res.status(500).json({ 'mensaje': 'Erro al consultar el usuario' });
+            res.status(500).json({ 'mensaje': 'Erro al eliminar el usuario' });
         } else {
             if(user.deletedCount === 1){
                 res.status(200).json({ 'mensaje': 'Usuario eliminado'});
